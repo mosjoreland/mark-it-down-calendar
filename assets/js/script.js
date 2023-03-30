@@ -1,135 +1,38 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-// this will save the content to the screen after refreshing using getItem
-// outside of the function so it occurs before the other funcitons if there
-// is content to be displayed
-// figure out how to add the ids for the different timeblocks 
-  let savedNote = localStorage.getItem('savedNote');
-  if (savedNote !== null) {
-    $('#note-1').val(savedNote);
-    console.log(savedNote);
-  }
-
-  if (savedNote !== null) {
-    $('#note-2').val(savedNote)
-    console.log(savedNote);
-  }
-
-  if (savedNote !== null) {
-    $('#note-3').val(savedNote)
-    console.log(savedNote);
-  }
-
-  if (savedNote !== null) {
-    $('#note-4').val(savedNote)
-    console.log(savedNote);
-  }
-
-  if (savedNote !== null) {
-    $('#note-5').val(savedNote)
-    console.log(savedNote);
-  }
-
-  if (savedNote !== null) {
-    $('#note-6').val(savedNote)
-    console.log(savedNote);
-  }
-
-  if (savedNote !== null) {
-    $('#note-7').val(savedNote)
-    console.log(savedNote);
-  }
-
-  if (savedNote !== null) {
-    $('#note-8').val(savedNote)
-    console.log(savedNote);
-  }
-
-  if (savedNote !== null) {
-    $('#note-9').val(savedNote)
-    console.log(savedNote);
-  }
-
-
 $(function () {
+  // applying dayjs to fetch current hour and date
   let currentTime = dayjs().hour();
   let currentDate = dayjs().format('dddd, MMMM D');
   $('#currentDay').text(currentDate);
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-
-
-  // let saveBtn = $('.saveBtn');
-
-
-  // saveBtn.click(function () {
-  //   let note = $('.description').val();
-  //   localStorage.setItem('savedNote', note);
-  // });
-
-
-  // saveBtn.click(funciton () {
-  //   localStorage.value = $('.description').text('description')
-  // });
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-
-
-  // let timeBlocks = $('.time-block');
-  // console.log(timeBlocks)
-
-  // timeBlocks.each(function () {
-  //   console.log(this.id);
-  //   let blockId = parseInt(this.id.split('-')[1]);
-  //   console.log(blockId);
-
-  //   if (blockId < currentTime) {
-  //     $(this).addClass('past');
-  //   } else if (blockId === currentTime) {
-  //     $(this).addClass('present');
-  //   } else {
-  //     $(this).addClass('future');
-  //   }
-
-  // });
-  // let firstHour = 9;
-  // let numTimeBlocks = 17;
-  let containerEl = $('#container')
+  // added a variable for the container div to append the new elements to
+  let containerEl = $('#container');
+  // loops through a set number to add the desired number elements
   for (let i = 9; i <= 17; i++) {
-    // let hour = firstHour++;
-    let timeBlockEl = $('<div>').addClass('row time-block').attr('id', 'hour-' + i);
-    let hourLabelEl = $('<div>').addClass('col-2 col-md-1 hour text-center py3').text(dayjs().hour(i).format('hA'));
-    let textAreaEl = $('<textarea>').addClass('col-8 col-md-10 description').attr('id', 'note-' + i).attr('rows', '3');
-    let saveBtnEl = $('<button>').addClass('btn saveBtn col-2 col-md-1').attr('aria-label', 'save');
+    let timeBlockEl = $('<div>')
+      .addClass('time-block row')
+      .attr('id', 'hour-' + i);
+    let hourLabelEl = $('<div>')
+      .addClass('hour col-2 col-md-1 text-center py3')
+      .text(dayjs().hour(i).format('hA'));
+    let textAreaEl = $('<textarea>')
+      .addClass('description col-8 col-md-10')
+      .attr('id', 'note-' + i)
+      .attr('rows', '3');
+    let saveBtnEl = $('<button>')
+      .addClass('btn saveBtn col-2 col-md-1')
+      .attr('aria-label', 'save')
+      .attr('id', 'saveBtn-' + i);
     let iconEl = $('<i>').addClass('fas fa-save').attr('aira-hidden', 'true');
 
-// the order of appending determines the layout provided by the styling classes added above
+    // the order of appending determines the layout provided by the styling classes added above
     saveBtnEl.append(iconEl);
     timeBlockEl.append(hourLabelEl);
     timeBlockEl.append(textAreaEl);
     timeBlockEl.append(saveBtnEl);
     containerEl.append(timeBlockEl);
-
-    
-
   }
-
-  // let timeBlocks = $('.time-block');
-  // console.log(timeBlocks)
-
+  // loops through the time block elements to apply the correct classes based on currentTime
   $('.time-block').each(function () {
-    console.log(this.id);
     let blockId = parseInt(this.id.split('-')[1]);
-    console.log(blockId);
-
     if (blockId < currentTime) {
       $(this).addClass('past');
     } else if (blockId === currentTime) {
@@ -137,19 +40,100 @@ $(function () {
     } else {
       $(this).addClass('future');
     }
-
+  });
+  // the method that is saving the values to the page after window is refreshed
+  let savedNote9 = localStorage.getItem('savedNote-9');
+  if (savedNote9 !== null) {
+    $('#note-9').val(savedNote9);
+  }
+  // the method that saves the value of the text area corresponding to the button clicked
+  // really need to figure how to use JSON or loop to shorten this code up
+  $('#saveBtn-9').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-9', note);
   });
 
-  
+  let savedNote10 = localStorage.getItem('savedNote-10');
+  if (savedNote10 !== null) {
+    $('#note-10').val(savedNote10);
+  }
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  $('#saveBtn-10').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-10', note);
+  });
+
+  let savedNote11 = localStorage.getItem('savedNote-11');
+  if (savedNote11 !== null) {
+    $('#note-11').val(savedNote11);
+  }
+
+  $('#saveBtn-11').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-11', note);
+  });
+
+  let savedNote12 = localStorage.getItem('savedNote-12');
+  if (savedNote12 !== null) {
+    $('#note-12').val(savedNote12);
+  }
+
+  $('#saveBtn-12').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-12', note);
+  });
+
+  let savedNote13 = localStorage.getItem('savedNote-13');
+  if (savedNote13 !== null) {
+    $('#note-13').val(savedNote13);
+  }
+
+  $('#saveBtn-13').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-13', note);
+  });
+
+  let savedNote14 = localStorage.getItem('savedNote-14');
+  if (savedNote14 !== null) {
+    $('#note-14').val(savedNote14);
+  }
+
+  $('#saveBtn-14').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-14', note);
+  });
+
+  let savedNote15 = localStorage.getItem('savedNote-15');
+  if (savedNote15 !== null) {
+    $('#note-15').val(savedNote15);
+  }
+
+  $('#saveBtn-15').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-15', note);
+  });
+
+  let savedNote16 = localStorage.getItem('savedNote-16');
+  if (savedNote16 !== null) {
+    $('#note-16').val(savedNote16);
+  }
+
+  $('#saveBtn-16').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-16', note);
+  });
+
+  let savedNote17 = localStorage.getItem('savedNote-17');
+  if (savedNote17 !== null) {
+    $('#note-17').val(savedNote17);
+  }
+
+  $('#saveBtn-17').on('click', function () {
+    let note = $(this).prev('.description').val();
+    localStorage.setItem('savedNote-17', note);
+  });
 });
 
-
-// jquery method to iterate over array of elements is .each and uses this 
+// jquery method to iterate over array of elements is .each and uses this
 // use split to extract part of a string and use the character you want the string to be broken up at in the quotes
 // to only get the integer use parseInt
