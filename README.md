@@ -36,6 +36,6 @@
 
 * I also used the askBCS feature in slack to help with some issues with local storage.
 
-![EmptyCalendar](./assets/images/blankCalendar.jpg)
+![EmptyCalendar](./assets/images/blankCalendarPage.jpg)
 
-![CalendarWithSavedText](./assets/images/savedTextCalendar.jpg)
+![CalendarWithSavedText](./assets/images/savedTextCalendarPage.jpg)
