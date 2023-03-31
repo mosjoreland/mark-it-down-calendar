@@ -5,7 +5,7 @@
 
 * This project helped me brush up on my localStorage skills, and figure out how to place these methods in my code. I also learned that you can use both the id and class when getting an element in JQuery. It was also fun applying what we learned about dayjs into an actual assignment.
 
-* This application is definitely useful for days when you have too much going on to remember it all off the top of your head. I want add these dynamically through JS/JQuery.
+* This application is definitely useful for days when you have too much going on to remember it all off the top of your head.
 
 ## Issues to be solved
 * This page needs to contain timeblocks for the stereotypical 9AM-5PM work hours that are responsive to the current time of day.
